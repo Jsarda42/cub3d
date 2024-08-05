@@ -4,4 +4,6 @@
 	There is an error reading the files descriptors (Wrong file format, Wrong file name ...)
 - Error status 194
 	The number of arguments must be 2;
+- Error status -42
+	There is an error in the map parsing for the cardinal;
 

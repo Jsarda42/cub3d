@@ -11,11 +11,20 @@ OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
 LIBFT 			= libft
 MINILIBX 		= miniLibX
-CC				= gcc -g -Wall -Wextra -Werror -I./includes
+CC				= cc -g3 -Wall -Wextra -Werror -I./includes
 RM				= rm -f
-MLXFLAGS 		= -I ./miniLibX -L ./miniLibX -lmlx -lX11 -lXext
 LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c
+UNAME := $(shell uname)
 
+ifeq ($(UNAME), Linux)
+	INCLUDES = -I/usr/include -Imlx
+	MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+	MLX_FLAGS = -I ./miniLibX -L ./miniLibX -lmlx -lX11 -lXext
+else
+	INCLUDES = -I/opt/X11/include -Imlx
+	MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+endif
 
 all:			libft_all minilibx_all ${NAME}
 $(NAME):		${OBJS}
@@ -45,5 +54,8 @@ minilibx_clean:
 	make -C $(MINILIBX_PATH) clean
 	$(RM) libmlx.a
 
-.PHONY: all fclean clean re
+norm:
+	find . -path ./mlx_linux -prune -o -name 'Makefile' -prune -o -name '*.c' -print -o -name '*.h' -print | xargs norminette
 
+
+.PHONY: all fclean clean re
