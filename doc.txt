@@ -6,4 +6,6 @@
 	The number of arguments must be 2;
 - Error status -42
 	There is an error in the map parsing for the cardinal;
+- Error status -41
+	Failed to init the mlx;
 

@@ -4,35 +4,39 @@ MINILIBX_PATH   = ./mlx_linux
 SRCS 			=	main.c \
 					./parsing/init_game.c \
 					./parsing/init_map.c \
-					./parsing/init_texture.c \
+					./parsing/init_mlx.c \
 					./parsing/parsing_utils.c \
+					./parsing/parse_map.c \
 
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
 LIBFT 			= libft
-CC				= cc -g3 -Wall -Wextra -Werror -I ./includes -I ./mlx_linux
+CC				= cc
+CFLAGS			= -g3 -Wall -Wextra -Werror
+INCLUDES		+= -I ./includes -I ./mlx_linux
 RM				= rm -f
-LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c
+LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
-	INCLUDES = -I/usr/include -Imlx
+	INCLUDES += -I /usr/include
 	MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 	MLX_FLAGS = -I ./mlx_linux -L ./mlx_linux -lmlx -lX11 -lXext
 else
-	INCLUDES = -I/opt/X11/include -Imlx
+	INCLUDES += -I /opt/X11/include
 	MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	MLX_FLAGS = -Lmlx -lmlx -L /usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
 all:			libft_all minilibx_all ${NAME}
 $(NAME):		${OBJS}
-				@$(CC) $(LIBFLAGS) libft.a libmlx.a $(OBJS) $(MLX_FLAGS) -o $@
+				@$(CC) $(INCLUDES) $(CFLAGS) $(LIBFLAGS)  libft.a libmlx.a $(OBJS) $(MLX_FLAGS) -o $@
 clean:			libft_clean minilibx_clean
 				@${RM} ${OBJS}
 fclean:			libft_fclean clean
 				@${RM} ${NAME}
 re:				fclean all
+
 
 libft_all:
 	make -C $(LIBFT_PATH) all
