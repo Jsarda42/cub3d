@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 13:23:35 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/06 16:11:20 by jsarda           ###   ########.fr       */
+/*   Created: 2024/08/06 15:01:03 by jsarda            #+#    #+#             */
+/*   Updated: 2024/08/06 16:09:46 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#include "cube.h"
 
-typedef struct s_image
+void	init_window(t_prog *data)
 {
-	void	*xpm_ptr;
-	int		h;
-	int		w;
-}			t_image;
+	int	screen_height;
+	int	screen_width;
 
-typedef struct s_map
-{
-	char	*filename;
-	int		map_size;
-	char	**map_str;
-}			t_map;
-
-typedef struct s_prog
-{
-	t_map	map_data;
-	t_image	no_wall;
-	t_image	so_wall;
-	t_image	we_wall;
-	t_image	ea_wall;
-	void	*mlx_ptr;
-	void	*win_ptr;
-}			t_prog;
-
-#endif
+	screen_height = 0;
+	screen_width = 0;
+	mlx_get_screen_size(data->mlx_ptr, &screen_width, &screen_height);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, screen_width, screen_height, "cude3D");
+	if (!data->win_ptr)
+		ft_errors(data, "Failed to create window", -41);
+}

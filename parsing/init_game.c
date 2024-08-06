@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 09:27:12 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/05 14:48:54 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/06 16:11:24 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,23 @@ void	init_data(t_prog *data, char **argv)
 	data->map_data.map_str = NULL;
 	data->map_data.map_size = 0;
 	data->ea_wall.h = 300;
-	data->ea_wall.w = 300;
 	data->no_wall.h = 300;
-	data->no_wall.w = 300;
 	data->we_wall.h = 300;
-	data->we_wall.w = 300;
 	data->so_wall.h = 300;
+	data->ea_wall.w = 300;
+	data->no_wall.w = 300;
+	data->we_wall.w = 300;
 	data->so_wall.w = 300;
-	data->no_wall.xpm_filename = NULL;
-	data->so_wall.xpm_filename = NULL;
-	data->we_wall.xpm_filename = NULL;
-	data->ea_wall.xpm_filename = NULL;
+	data->no_wall.xpm_ptr = NULL;
+	data->so_wall.xpm_ptr = NULL;
+	data->we_wall.xpm_ptr = NULL;
+	data->ea_wall.xpm_ptr = NULL;
+	data->win_ptr = NULL;
 }
 
 void	del_data(t_prog *data)
 {
 	if (!data)
 		return ;
-	free(data->no_wall.xpm_filename);
-	free(data->so_wall.xpm_filename);
-	free(data->we_wall.xpm_filename);
-	free(data->ea_wall.xpm_filename);
 	free_split(data->map_data.map_str);
 }
-

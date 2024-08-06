@@ -3,6 +3,8 @@ LIBFT_PATH 		= ./libft
 MINILIBX_PATH   = ./mlx_linux
 SRCS 			=	main.c \
 					./parsing/init_game.c \
+					./parsing/close_game.c \
+					./parsing/init_window.c \
 					./parsing/init_map.c \
 					./parsing/init_texture.c \
 					./parsing/parsing_utils.c \
