@@ -40,18 +40,24 @@ void	read_map(int fd, t_prog *data, char *map_name)
 	if (fd == -1)
 		ft_errors(data, "Error opening file", 1);
 	data->map_data.map_str[i] = get_next_line(fd);
-	while (data->map_data.map_str[i])
+	while (data->map_data.map_str[i] && i < data->map_data.map_size)
 	{
 		i++;
 		data->map_data.map_str[i] = get_next_line(fd);
 	}
+	close(fd);
 }
 
 void	init_map(t_prog *data)
 {
 	int		fd;
 	char	*map_name;
+	int i;
+	int tmp_i;
+	int x;
 
+	i = 0;
+	tmp_i = 0;
 	map_name = data->map_data.filename;
 	if (ft_strlen(map_name) <= 4 || !ft_strnstr(map_name + (ft_strlen(map_name) - 4), ".cub", 5))
 		ft_errors(data, "File format must be 'exemple.cub' or file does not exist", 1);

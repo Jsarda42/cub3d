@@ -8,6 +8,7 @@ SRCS 			=	main.c \
 					./parsing/init_map.c \
 					./parsing/init_texture.c \
 					./parsing/parsing_utils.c \
+					./parsing/render_map.c \
 
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h

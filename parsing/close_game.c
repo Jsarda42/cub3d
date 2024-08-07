@@ -17,3 +17,10 @@ int	close_game(t_prog *data)
 	free_all(data);
 	exit(0);
 }
+
+void	del_data(t_prog *data)
+{
+	if (!data)
+		return ;
+	free_split(data->map_data.map_str);
+}

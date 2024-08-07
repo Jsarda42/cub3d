@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	init_data(&data, argv);
 	init_map(&data);
 	init_window(&data);
-	init_texture(&data);
+	//render_texture(&data);
 	mlx_hook(data.win_ptr, DestroyNotify, ButtonPressMask, &close_game, &data);
 	mlx_loop(data.mlx_ptr);
 	free_all(&data);

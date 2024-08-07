@@ -29,9 +29,10 @@
 void	init_data(t_prog *data, char **argv);
 void	del_data(t_prog *data);
 void	init_map(t_prog *data);
-void	init_texture(t_prog *data);
+int     init_map_texture(t_prog *data);
 void	init_window(t_prog *data);
 int		close_game(t_prog *data);
+void    render_texture(t_prog *data);
 
 int		ft_count_args(char **arg);
 

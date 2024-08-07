@@ -27,9 +27,16 @@ typedef struct s_map
 	char	**map_str;
 }			t_map;
 
+typedef struct s_line
+{
+	int x;
+	int y;
+} t_line;
+
 typedef struct s_prog
 {
 	t_map	map_data;
+	t_line line;
 	t_image	no_wall;
 	t_image	so_wall;
 	t_image	we_wall;

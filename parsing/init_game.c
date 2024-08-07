@@ -34,10 +34,3 @@ void	init_data(t_prog *data, char **argv)
 	data->ea_wall.xpm_ptr = NULL;
 	data->win_ptr = NULL;
 }
-
-void	del_data(t_prog *data)
-{
-	if (!data)
-		return ;
-	free_split(data->map_data.map_str);
-}
