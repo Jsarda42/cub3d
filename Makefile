@@ -1,14 +1,18 @@
 NAME 			= cub3D
 LIBFT_PATH 		= ./libft
 MINILIBX_PATH   = ./mlx_linux
-SRCS 			=	main.c \
-					./parsing/init_game.c \
-					./parsing/close_game.c \
-					./parsing/init_window.c \
-					./parsing/init_map.c \
-					./parsing/init_texture.c \
+SRCS 			=	src/main.c \
+					./src/close_game.c \
+					./init/init_game.c \
+					./init/init_map.c \
+					./init/init_window.c \
+					./init/init_texture.c \
+					./parsing/parse_map.c \
 					./parsing/parsing_utils.c \
-					./parsing/render_map.c \
+					./parsing/parse_identifier.c \
+					./parsing/parse_map_grid.c \
+					./utils/free.c \
+					./utils/ft_errors.c \
 
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h

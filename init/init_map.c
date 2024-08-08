@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 09:47:47 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/06 14:57:58 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/08 09:13:34 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,7 @@ void	init_map(t_prog *data)
 {
 	int		fd;
 	char	*map_name;
-	int i;
-	int tmp_i;
-	int x;
 
-	i = 0;
-	tmp_i = 0;
 	map_name = data->map_data.filename;
 	if (ft_strlen(map_name) <= 4 || !ft_strnstr(map_name + (ft_strlen(map_name) - 4), ".cub", 5))
 		ft_errors(data, "File format must be 'exemple.cub' or file does not exist", 1);
