@@ -74,25 +74,47 @@ int	is_identifier(char identifier)
 int	parse_identifier(t_prog *data, char **map)
 {
 	int	i;
+	int j;
 	int	identifier[6] = {0};
 
 	i = -1;
 	while (map[++i])
 	{
+		j = 0;
+		while (map[i][j] == ' ')
+			j++;
 		if (define_first_line(map[i]) != 0)
 			break ;
-		else if (map[i][0] == 'C')
+		else if (map[i][j] == 'C')
+		{
+			parse_colors(data, map[i]);
 			identifier[0]++;
-		else if (map[i][0] == 'F')
+		}
+		else if (map[i][j] == 'F')
+		{
+			parse_colors(data, map[i]);
 			identifier[1]++;
-		else if (map[i][0] == 'N')
+		}
+		else if (map[i][j] == 'N')
+		{
+			parse_cardinals(data, map[i]);
 			identifier[2]++;
-		else if (map[i][0] == 'S')
+		}
+		else if (map[i][j] == 'S')
+		{
+			parse_cardinals(data, map[i]);
 			identifier[3]++;
-		else if (map[i][0] == 'E')
+		}
+		else if (map[i][j] == 'E')
+		{
+			parse_cardinals(data, map[i]);
 			identifier[4]++;
-		else if (map[i][0] == 'W')
+		}
+		else if (map[i][j] == 'W')
+		{
+			parse_cardinals(data, map[i]);
 			identifier[5]++;
+		}
 		else if (define_wrong_line(map[i]))
 			ft_errors(data, "Wrong identifier", 2);
 	}

@@ -13,8 +13,14 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+#define PLAYER_O "./player_o.xpm"
+#define PLAYER_N "./player_n.xpm"
+#define PLAYER_S "./player_s.xpm"
+#define PLAYER_W "./player_w.xpm"
+
 typedef struct s_image
 {
+	char	*filename;
 	void	*xpm_ptr;
 	int		h;
 	int		w;
@@ -41,6 +47,10 @@ typedef struct s_prog
 	t_image	so_wall;
 	t_image	we_wall;
 	t_image	ea_wall;
+	t_image player_n;
+	t_image player_o;
+	t_image player_w;
+	t_image player_s;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }			t_prog;

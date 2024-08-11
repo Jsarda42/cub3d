@@ -34,11 +34,14 @@ int		close_game(t_prog *data);
 void	init_data(t_prog *data, char **argv);
 void	init_map(t_prog *data);
 void	init_window(t_prog *data);
+void	init_textures(t_prog *data);
 
 // parse
 void	parse_map(t_prog *data);
 int		parse_identifier(t_prog *data, char **map);
 void	parse_map_grid(t_prog *data, int i);
+void	parse_cardinals(t_prog *data, char *cardinal_line);
+void	parse_colors(t_prog *data, char *colors_line);
 
 // utils
 void	del_data(t_prog *data);

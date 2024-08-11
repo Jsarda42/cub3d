@@ -12,93 +12,36 @@
 
 #include "../includes/cube.h"
 
-static int	file_to_img(t_image *image, t_prog *data, char *filename)
+static void	file_to_img(t_image *image, t_prog *data, char *filename)
 {
 	image->xpm_ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename, &(image->w),
 			&(image->h));
 	if (!image->xpm_ptr)
-		return (1);
-	return (0);
+		ft_errors(data, "Error uploading xpm to image", -42);
 }
 
-static int	init_walls(t_prog *data, char **cardinal)
+static void	init_walls(t_prog *data)
 {
-	cardinal[1][ft_strlen(cardinal[1]) - 1] = '\0';
-	if (strcmp(cardinal[0], " ") == 0)
-		return (0);
-	if (!data->no_wall.xpm_ptr && strcmp(cardinal[0], "NO") == 0)
-		return (file_to_img(&(data->no_wall), data, cardinal[1]));
-	else if (!data->so_wall.xpm_ptr && strcmp(cardinal[0], "SO") == 0)
-		return (file_to_img(&(data->so_wall), data, cardinal[1]));
-	else if (!data->we_wall.xpm_ptr && strcmp(cardinal[0], "WE") == 0)
-		return (file_to_img(&(data->we_wall), data, cardinal[1]));
-	else if (!data->ea_wall.xpm_ptr && strcmp(cardinal[0], "EA") == 0)
-		return (file_to_img(&(data->ea_wall), data, cardinal[1]));
-	return (0);
+	if (!data->no_wall.xpm_ptr)
+		file_to_img(&(data->no_wall), data, data->no_wall.filename);
+	if (!data->so_wall.xpm_ptr)
+		file_to_img(&(data->so_wall), data, data->so_wall.filename);
+	if (!data->we_wall.xpm_ptr)
+		file_to_img(&(data->we_wall), data, data->we_wall.filename);
+	if (!data->ea_wall.xpm_ptr)
+		file_to_img(&(data->ea_wall), data, data->ea_wall.filename);
 }
 
-int	is_cardinal(char identifier)
+static void init_player(t_prog * data)
 {
-	if (identifier == 'N' || identifier == 'S' || identifier == 'W'
-		|| identifier == 'E')
-		return (1);
-	return (0);
+	file_to_img(&(data->player_n), data, PLAYER_N);
+	file_to_img(&(data->player_o), data, PLAYER_O);
+	file_to_img(&(data->player_s), data, PLAYER_S);
+	file_to_img(&(data->player_w), data, PLAYER_W);
 }
 
-int	is_colors(char identifier)
+void	init_textures(t_prog *data)
 {
-	if (identifier == 'F' || identifier == 'C')
-		return (1);
-	return (0);
+	init_walls(data);
+	//init_player(data);
 }
-
-void	parse_cardinal(t_prog *data, char **identifier)
-{
-	if (ft_count_args(identifier) != 2)
-	{
-		free_split(identifier);
-		ft_errors(data, "Cardinal : wrong number of arguments", 1);
-	}
-	if (init_walls(data, identifier))
-	{
-		free_split(identifier);
-		ft_errors(data, "Error initialising xpm to images", 1);
-	}
-}
-
-void	parse_colors(t_prog *data, char **identifier)
-{
-	if (ft_count_args(identifier) != 4)
-	{
-		free_split(identifier);
-		ft_errors(data, "Colors : wrong number of arguments", 1);
-	}
-}
-
-// int	parse_identifier(t_prog *data, int i)
-// {
-// 	char	**identifier;
-// 	int		checker;
-
-// 	checker = 0;
-// 	identifier = ft_split(data->map_data.map_str[i], ' ');
-// 	if (is_cardinal(identifier[0][0]))
-// 	{
-// 		checker = 1;
-// 		parse_cardinal(data, identifier);
-// 	}
-// 	else if (is_colors(identifier[0][0]))
-// 	{
-// 		checker = 1;
-// 		parse_colors(data, identifier);
-// 	}
-// 	if (!is_cardinal(identifier[0][0]) && !is_colors(identifier[0][0])
-// 		&& identifier[0][0] != ' ' && identifier[0][0] != '\n')
-// 	{
-// 		free_split(identifier);
-// 		ft_errors(data, "Not enough or wrong identifier", -42);
-// 	}
-// 	free_split(identifier);
-// 	return (checker);
-// }
-

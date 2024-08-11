@@ -28,9 +28,21 @@ void	init_data(t_prog *data, char **argv)
 	data->no_wall.w = 300;
 	data->we_wall.w = 300;
 	data->so_wall.w = 300;
+	data->player_n.h = 300;
+	data->player_n.h = 300;
+	data->player_o.h = 300;
+	data->player_s.h = 300;
+	data->player_s.w = 300;
+	data->player_w.w = 300;
+	data->player_w.w = 300;
+	data->player_o.w = 300;
 	data->no_wall.xpm_ptr = NULL;
 	data->so_wall.xpm_ptr = NULL;
 	data->we_wall.xpm_ptr = NULL;
 	data->ea_wall.xpm_ptr = NULL;
+	data->player_n.xpm_ptr = NULL;
+	data->player_o.xpm_ptr = NULL;
+	data->player_s.xpm_ptr = NULL;
+	data->player_w.xpm_ptr = NULL;
 	data->win_ptr = NULL;
 }
