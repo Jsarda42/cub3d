@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:26:50 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/08 14:27:03 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:06:24 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ void	free_all(t_prog *data)
 	free_xpm_ptr(&(data->we_wall), data);
 	free_xpm_ptr(&(data->so_wall), data);
 	free_xpm_ptr(&(data->ea_wall), data);
+	if (data->no_wall.filename)
+		free(data->no_wall.filename);
+	if (data->so_wall.filename)
+		free(data->so_wall.filename);
+	if (data->we_wall.filename)
+		free(data->we_wall.filename);
+	if (data->ea_wall.filename)
+		free(data->ea_wall.filename);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)

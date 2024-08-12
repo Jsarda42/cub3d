@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:47:15 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/08 13:58:51 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:34:43 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,21 @@ void	check_number_of_identifier(t_prog *data, int *identifier)
 	}
 }
 
-int	is_identifier(char identifier)
-{
-	if (identifier == 'N' || identifier == 'S' || identifier == 'W'
-		|| identifier == 'E' || identifier == 'C' || identifier == 'F')
-		return (1);
-	return (0);
-}
-
 int	parse_identifier(t_prog *data, char **map)
 {
 	int	i;
 	int j;
 	int	identifier[6] = {0};
 
-	i = -1;
-	while (map[++i])
+	i = 0;
+	while (map[i])
 	{
 		j = 0;
-		while (map[i][j] == ' ')
-			j++;
 		if (define_first_line(map[i]) != 0)
 			break ;
-		else if (map[i][j] == 'C')
+		while (map[i][j] == ' ')
+			j++;
+		if (map[i][j] == 'C')
 		{
 			parse_colors(data, map[i]);
 			identifier[0]++;
@@ -117,6 +109,7 @@ int	parse_identifier(t_prog *data, char **map)
 		}
 		else if (define_wrong_line(map[i]))
 			ft_errors(data, "Wrong identifier", 2);
+		i++;
 	}
 	check_number_of_identifier(data, identifier);
 	return (i);

@@ -5,8 +5,10 @@ SRCS 			=	src/main.c \
 					./src/close_game.c \
 					./init/init_game.c \
 					./init/init_map.c \
+					./init/init_texture.c \
 					./init/init_window.c \
 					./parsing/parse_map.c \
+					./parsing/parse_map_utils.c \
 					./parsing/parsing_utils.c \
 					./parsing/parse_cardinals.c \
 					./parsing/parse_colors.c \

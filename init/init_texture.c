@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:10:25 by juliensarda       #+#    #+#             */
-/*   Updated: 2024/08/08 11:00:00 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:29:05 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static void	file_to_img(t_image *image, t_prog *data, char *filename)
 
 static void	init_walls(t_prog *data)
 {
+	printf("filename in init = %s\n", data->no_wall.filename);
+	printf("filename in init= %s\n", data->so_wall.filename);
+	printf("filename in init= %s\n", data->we_wall.filename);
+	printf("filename in init= %s\n", data->ea_wall.filename);
 	if (!data->no_wall.xpm_ptr)
 		file_to_img(&(data->no_wall), data, data->no_wall.filename);
 	if (!data->so_wall.xpm_ptr)
@@ -32,16 +36,7 @@ static void	init_walls(t_prog *data)
 		file_to_img(&(data->ea_wall), data, data->ea_wall.filename);
 }
 
-static void init_player(t_prog * data)
-{
-	file_to_img(&(data->player_n), data, PLAYER_N);
-	file_to_img(&(data->player_o), data, PLAYER_O);
-	file_to_img(&(data->player_s), data, PLAYER_S);
-	file_to_img(&(data->player_w), data, PLAYER_W);
-}
-
 void	init_textures(t_prog *data)
 {
 	init_walls(data);
-	//init_player(data);
 }

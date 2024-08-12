@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:23:54 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/08 13:52:35 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/12 13:19:15 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 // src
 int		close_game(t_prog *data);
 
-
 // init
 void	init_data(t_prog *data, char **argv);
 void	init_map(t_prog *data);
@@ -48,5 +47,9 @@ void	del_data(t_prog *data);
 int		ft_count_args(char **arg);
 void	ft_errors(t_prog *data, char *message, int error_status);
 void	free_all(t_prog *data);
+void	check_args_nbr(t_prog *data, char **str, int nbr);
+void	mid_valid_char(t_prog *data, char c);
+void	ext_valid_char(t_prog *data, char c);
+int		is_identifier(char identifier);
 
 #endif
