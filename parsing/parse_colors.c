@@ -17,6 +17,7 @@ int	extract_color(char *color_str)
 	int	i;
 
 	i = 0;
+	color_str[ft_strlen(color_str) - 1] = '\0'; 
 	while (color_str[i] == ' ')
 		i++;
 	return (ft_atoi(&color_str[i]));
@@ -46,7 +47,11 @@ void	parse_colors(t_prog *data, char *colors_line)
 		colors_line += 2;
 	}
 	colors = ft_split(colors_line, ',');
-	check_args_nbr(data, colors, 3);
+	if (!colors[0] || !colors[1] || !colors[2] || colors[3] != NULL)
+	{
+		free_split(colors);
+		ft_errors(data, "Colors: wrong number of arguments or missing components", 1);
+	}
 	left_color = extract_color(colors[0]);
 	mid_color = extract_color(colors[1]);
 	right_color = extract_color(colors[2]);

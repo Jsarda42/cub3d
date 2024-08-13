@@ -20,8 +20,6 @@ void	mid_valid_char(t_prog *data, char c)
 		return ;
 	if (c == ' ')
 		return ;
-	if (c == '\n')
-		return ;
 	if (c == 'E' || c == 'N' || c == 'W' || c == 'S')
 		return ;
 	ft_errors(data, "Wrong character in mid line", -42);
@@ -29,8 +27,6 @@ void	mid_valid_char(t_prog *data, char c)
 
 void	ext_valid_char(t_prog *data, char c)
 {
-	if (c == '\n')
-		return ;
 	if (c == ' ')
 		return ;
 	if (c == '1')

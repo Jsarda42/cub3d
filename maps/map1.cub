@@ -1,9 +1,9 @@
- SO    ./textures/greystone.xpm
+    C 125,206,250
+ SO   ./textures/greystone.xpm
           F    255,  248, 220
 NO                ./textures/colorstone.xpm
 WE     ./textures/bluestone.xpm
 EA   ./textures/wood.xpm
-C 125,206,250
 
 
 

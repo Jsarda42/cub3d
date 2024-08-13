@@ -21,8 +21,7 @@ int	define_wrong_line(char *line)
 		i++;
 	while (line[i])
 	{
-		if (line[i] != 'N' && line[i] != 'S' && line[i] != 'W' && line[i] != 'E'
-			&& line[i] != '\n')
+		if (line[i] != 'N' && line[i] != 'S' && line[i] != 'W' && line[i] != 'E')
 			return (1);
 		i++;
 	}

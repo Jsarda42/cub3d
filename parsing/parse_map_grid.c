@@ -19,7 +19,7 @@ void	check_first_line(t_prog *data, char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '1' && line[i] != '\n')
+		if (line[i] != ' ' && line[i] != '1')
 			ft_errors(data, "Wrong map format in first line", -42);
 		i++;
 	}

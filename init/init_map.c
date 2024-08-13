@@ -43,6 +43,8 @@ void	read_map(int fd, t_prog *data, char *map_name)
 	data->map_data.map_str[i] = get_next_line(fd);
 	while (data->map_data.map_str[i] && i < data->map_data.map_size)
 	{
+		if (data->map_data.map_str[i][ft_strlen(data->map_data.map_str[i]) - 1] == '\n')
+			data->map_data.map_str[i][ft_strlen(data->map_data.map_str[i]) - 1] = '\0';
 		i++;
 		data->map_data.map_str[i] = get_next_line(fd);
 	}
