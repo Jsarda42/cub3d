@@ -36,6 +36,8 @@ typedef struct s_line
 
 typedef struct s_prog
 {
+	int		S_H;
+	int		S_W;
 	t_map	map_data;
 	t_line line;
 	t_image	no_wall;

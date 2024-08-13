@@ -14,13 +14,8 @@
 
 void	init_window(t_prog *data)
 {
-	int	screen_height;
-	int	screen_width;
-
-	screen_height = 0;
-	screen_width = 0;
-	mlx_get_screen_size(data->mlx_ptr, &screen_width, &screen_height);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, screen_width, screen_height,
+	mlx_get_screen_size(data->mlx_ptr, &data->S_W, &data->S_H);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->S_W, data->S_H,
 			"cude3D");
 	if (!data->win_ptr)
 		ft_errors(data, "Failed to create window", -41);

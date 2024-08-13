@@ -14,18 +14,16 @@
 
 static void	file_to_img(t_image *image, t_prog *data, char *filename)
 {
+	filename[ft_strlen(filename) - 1] = '\0';
 	image->xpm_ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename, &(image->w),
 			&(image->h));
 	if (!image->xpm_ptr)
 		ft_errors(data, "Error uploading xpm to image", -42);
+	printf("init = %s\n", filename);
 }
 
 static void	init_walls(t_prog *data)
 {
-	printf("filename in init = %s\n", data->no_wall.filename);
-	printf("filename in init= %s\n", data->so_wall.filename);
-	printf("filename in init= %s\n", data->we_wall.filename);
-	printf("filename in init= %s\n", data->ea_wall.filename);
 	if (!data->no_wall.xpm_ptr)
 		file_to_img(&(data->no_wall), data, data->no_wall.filename);
 	if (!data->so_wall.xpm_ptr)

@@ -41,5 +41,7 @@ void	init_data(t_prog *data, char **argv)
 	data->map_data.map_str = NULL;
 	data->map_data.map_size = 0;
 	data->win_ptr = NULL;
+	data->S_H = 0;
+	data->S_W = 0;
 	init_walls(data);
 }

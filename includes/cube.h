@@ -25,6 +25,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
+# include <math.h>
 
 // src
 int		close_game(t_prog *data);

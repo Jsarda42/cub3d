@@ -1,7 +1,4 @@
-
-SO    ./textures/greystone.xpm
-
-
+ SO    ./textures/greystone.xpm
           F    255,  248, 220
 NO                ./textures/colorstone.xpm
 WE     ./textures/bluestone.xpm

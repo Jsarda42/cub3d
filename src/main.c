@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	parse_map(&data);
 	init_textures(&data);
 	init_window(&data);
+	// recasting
 	mlx_hook(data.win_ptr, DestroyNotify, ButtonPressMask, &close_game, &data);
 	mlx_loop(data.mlx_ptr);
 	free_all(&data);

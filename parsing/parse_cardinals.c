@@ -18,7 +18,6 @@ void	parse_cardinals(t_prog *data, char *cardinal_line)
 	int		i;
 
 	i = 0;
-	printf("line is = %s\n", cardinal_line);
 	cardinal = ft_split(cardinal_line, ' ');
 	if (ft_count_args(cardinal) != 2)
 	{
@@ -32,44 +31,28 @@ void	parse_cardinals(t_prog *data, char *cardinal_line)
 		free_split(cardinal);
 		ft_errors(data, "Wrong cardinal", 1);
 	}
-	else
-	{
+	else if (cardinal[0][i] == 'N' && cardinal[0][i + 1] == 'O')
 		data->no_wall.filename = ft_strdup(cardinal[1]);
-		printf("%s\n", data->no_wall.filename);
-	}
 	if (cardinal[0][i] == 'W' && cardinal[0][i + 1] != 'E')
 	{
 		free_split(cardinal);
 		ft_errors(data, "Wrong cardinal", 1);
 	}
-	else
-	{
+	else if (cardinal[0][i] == 'W' && cardinal[0][i + 1] == 'E')
 		data->we_wall.filename = ft_strdup(cardinal[1]);
-		printf("%s\n", data->we_wall.filename);
-	}
 	if (cardinal[0][i] == 'S' && cardinal[0][i + 1] != 'O')
 	{
 		free_split(cardinal);
 		ft_errors(data, "Wrong cardinal", 1);
 	}
-	else
-	{
+	else if (cardinal[0][i] == 'S' && cardinal[0][i + 1] == 'O')
 		data->so_wall.filename = ft_strdup(cardinal[1]);
-		printf("%s\n", data->so_wall.filename);
-	}
 	if (cardinal[0][i] == 'E' && cardinal[0][i + 1] != 'A')
 	{
 		free_split(cardinal);
 		ft_errors(data, "Wrong cardinal", 1);
 	}
-	else
-	{
+	else if (cardinal[0][i] == 'E' && cardinal[0][i + 1] == 'A')
 		data->ea_wall.filename = ft_strdup(cardinal[1]);
-		printf("%s\n", data->ea_wall.filename);
-	}
-	printf("filename in parse = %s\n", data->no_wall.filename);
-	printf("filename in parse= %s\n", data->so_wall.filename);
-	printf("filename in parse= %s\n", data->we_wall.filename);
-	printf("filename in parse= %s\n", data->ea_wall.filename);
 	free_split(cardinal);
 }
