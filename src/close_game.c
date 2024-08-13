@@ -22,5 +22,6 @@ void	del_data(t_prog *data)
 {
 	if (!data)
 		return ;
-	free_split(data->map_data.map_str);
+	if (data->map_data.map_str)
+		free_split(data->map_data.map_str);
 }
