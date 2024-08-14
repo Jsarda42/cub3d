@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 12:37:23 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/12 13:18:57 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 11:51:00 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,11 @@ int	is_identifier(char identifier)
 		|| identifier == 'E' || identifier == 'C' || identifier == 'F')
 		return (1);
 	return (0);
+}
+
+int	in_range(int color)
+{
+	if (color >= 0 && color <= 255)
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:47:15 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/12 14:34:43 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 13:28:04 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	define_wrong_line(char *line)
 		i++;
 	while (line[i])
 	{
-		if (line[i] != 'N' && line[i] != 'S' && line[i] != 'W' && line[i] != 'E')
+		if (line[i] != 'N' && line[i] != 'S' && line[i] != 'W'
+			&& line[i] != 'E')
 			return (1);
 		i++;
 	}
@@ -62,11 +63,40 @@ void	check_number_of_identifier(t_prog *data, int *identifier)
 	}
 }
 
+int	process_line(char *line, int start, t_prog *data, int *identifier)
+{
+	char	type;
+
+	type = line[start];
+	if (type == 'C' || type == 'F')
+	{
+		parse_colors(data, line);
+		if (type == 'C')
+			return (identifier[0]++, 1);
+		else
+			return (identifier[1]++, 1);
+	}
+	else if (type == 'N' || type == 'S' || type == 'E' || type == 'W')
+	{
+		parse_cardinals(data, line);
+		if (type == 'N')
+			identifier[2]++;
+		else if (type == 'S')
+			identifier[3]++;
+		else if (type == 'E')
+			identifier[4]++;
+		else
+			identifier[5]++;
+		return (1);
+	}
+	return (0);
+}
+
 int	parse_identifier(t_prog *data, char **map)
 {
-	int	i;
-	int j;
-	int	identifier[6] = {0};
+	int			i;
+	int			j;
+	static int	identifier[6] = {0};
 
 	i = 0;
 	while (map[i])
@@ -76,37 +106,7 @@ int	parse_identifier(t_prog *data, char **map)
 			break ;
 		while (map[i][j] == ' ')
 			j++;
-		if (map[i][j] == 'C')
-		{
-			parse_colors(data, map[i]);
-			identifier[0]++;
-		}
-		else if (map[i][j] == 'F')
-		{
-			parse_colors(data, map[i]);
-			identifier[1]++;
-		}
-		else if (map[i][j] == 'N')
-		{
-			parse_cardinals(data, map[i]);
-			identifier[2]++;
-		}
-		else if (map[i][j] == 'S')
-		{
-			parse_cardinals(data, map[i]);
-			identifier[3]++;
-		}
-		else if (map[i][j] == 'E')
-		{
-			parse_cardinals(data, map[i]);
-			identifier[4]++;
-		}
-		else if (map[i][j] == 'W')
-		{
-			parse_cardinals(data, map[i]);
-			identifier[5]++;
-		}
-		else if (define_wrong_line(map[i]))
+		if (map[i][j] && !process_line(map[i], j, data, identifier))
 			ft_errors(data, "Wrong identifier", 2);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:23:54 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/12 13:19:15 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 11:51:13 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <X11/keysym.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
-# include <math.h>
 
 // src
 int		close_game(t_prog *data);
@@ -52,5 +52,6 @@ void	check_args_nbr(t_prog *data, char **str, int nbr);
 void	mid_valid_char(t_prog *data, char c);
 void	ext_valid_char(t_prog *data, char c);
 int		is_identifier(char identifier);
+int		in_range(int color);
 
 #endif

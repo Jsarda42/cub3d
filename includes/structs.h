@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:23:35 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/12 14:05:37 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 13:28:56 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ typedef struct s_map
 
 typedef struct s_line
 {
-	int x;
-	int y;
-} t_line;
+	int		x;
+	int		y;
+}			t_line;
 
 typedef struct s_prog
 {
-	int		S_H;
-	int		S_W;
+	int		s_h;
+	int		s_w;
 	t_map	map_data;
-	t_line line;
+	t_line	line;
 	t_image	no_wall;
 	t_image	so_wall;
 	t_image	we_wall;

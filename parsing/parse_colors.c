@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:47:15 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/14 09:57:51 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 11:52:19 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,44 +23,45 @@ int	extract_color(char *color_str)
 	return (ft_atoi(&color_str[i]));
 }
 
-int	in_range(int color)
-{
-	if (color >= 0 && color <= 255)
-		return (0);
-	return (1);
-}
-
-int	valid_Rgb(char *colors_line, int *i)
+int	parse_rgb_value(char *colors_line, int *i)
 {
 	int	value;
+
+	value = 0;
+	while (colors_line[*i] == ' ')
+		(*i)++;
+	if (!ft_isdigit(colors_line[*i]))
+		return (-1);
+	while (ft_isdigit(colors_line[*i]))
+	{
+		value = value * 10 + (colors_line[*i] - '0');
+		if (value > 255)
+			return (-1);
+		(*i)++;
+	}
+	while (colors_line[*i] == ' ')
+		(*i)++;
+	return (value);
+}
+
+int	valid_rgb(char *colors_line, int *i)
+{
 	int	count;
 	int	comma_count;
+	int	value;
 
 	count = 0;
-	comma_count = 0;
+	comma_count = -1;
 	while (colors_line[*i])
 	{
-		while (colors_line[*i] == ' ')
-			(*i)++;
-		if (!ft_isdigit(colors_line[*i]))
+		value = parse_rgb_value(colors_line, i);
+		if (value == -1)
 			return (0);
-		value = 0;
-		while (ft_isdigit(colors_line[*i]))
-		{
-			value = value * 10 + (colors_line[*i] - '0');
-			if (value > 255)
-				return (0);
-			(*i)++;
-		}
 		count++;
-		while (colors_line[*i] == ' ')
-			(*i)++;
-		if (count < 3)
+		if (comma_count++ != -2 && count < 3)
 		{
-			if (colors_line[*i] != ',')
+			if (colors_line[(*i)++] != ',')
 				return (0);
-			comma_count++;
-			(*i)++;
 		}
 		else if (count == 3)
 		{
@@ -92,7 +93,7 @@ void	check_line_args(t_prog *data, char *colors_line)
 				ft_errors(data, "Too many identifiers in color line", -42);
 			i++;
 		}
-		if (!valid_Rgb(colors_line, &i))
+		if (!valid_rgb(colors_line, &i))
 			ft_errors(data, "Invalid RGB format", -42);
 		while (colors_line[i] == ' ')
 			i++;

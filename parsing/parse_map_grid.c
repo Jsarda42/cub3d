@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:48:47 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/14 10:07:49 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 11:54:15 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	check_mid_line(t_prog *data, char **map, int row)
 	int	player_number;
 
 	player_number = 0;
-	col = 0;
-	while (map[row][col])
+	col = -1;
+	while (map[row][++col])
 	{
 		if (is_player_position(map[row][col]))
 			player_number += 1;
@@ -86,7 +86,6 @@ int	check_mid_line(t_prog *data, char **map, int row)
 				+ 1] == '\0')
 				ft_errors(data, "Wrong map format", -42);
 		}
-		col++;
 	}
 	return (player_number);
 }
