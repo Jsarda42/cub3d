@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:48:47 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/12 12:07:01 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:07:49 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,15 @@ int	check_mid_line(t_prog *data, char **map, int row)
 		if (map[row][col] == '0' || is_player_position(map[row][col]))
 		{
 			if (row == 0 || !map[row - 1][col] || map[row - 1][col] == ' ')
-				ft_errors(data, "Map has a hole (missing top wall)", -42);
+				ft_errors(data, "Wrong map format", -42);
 			if (!map[row + 1] || map[row + 1][col] == ' ' || map[row
 				+ 1][col] == '\0')
-				ft_errors(data, "Map has a hole (missing bottom wall)", -42);
+				ft_errors(data, "Wrong map format", -42);
 			if (col == 0 || map[row][col - 1] == ' ')
-				ft_errors(data, "Map has a hole (missing left wall)", -42);
+				ft_errors(data, "Wrong map format", -42);
 			if (!map[row][col + 1] || map[row][col + 1] == ' ' || map[row][col
 				+ 1] == '\0')
-				ft_errors(data, "Map has a hole (missing right wall)", -42);
+				ft_errors(data, "Wrong map format", -42);
 		}
 		col++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:47:15 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/12 11:19:03 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/14 09:57:51 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	extract_color(char *color_str)
 	int	i;
 
 	i = 0;
-	color_str[ft_strlen(color_str) - 1] = '\0'; 
+	color_str[ft_strlen(color_str) - 1] = '\0';
 	while (color_str[i] == ' ')
 		i++;
 	return (ft_atoi(&color_str[i]));
@@ -30,22 +30,74 @@ int	in_range(int color)
 	return (1);
 }
 
+int	valid_Rgb(char *colors_line, int *i)
+{
+	int	value;
+	int	count;
+	int	comma_count;
+
+	count = 0;
+	comma_count = 0;
+	while (colors_line[*i])
+	{
+		while (colors_line[*i] == ' ')
+			(*i)++;
+		if (!ft_isdigit(colors_line[*i]))
+			return (0);
+		value = 0;
+		while (ft_isdigit(colors_line[*i]))
+		{
+			value = value * 10 + (colors_line[*i] - '0');
+			if (value > 255)
+				return (0);
+			(*i)++;
+		}
+		count++;
+		while (colors_line[*i] == ' ')
+			(*i)++;
+		if (count < 3)
+		{
+			if (colors_line[*i] != ',')
+				return (0);
+			comma_count++;
+			(*i)++;
+		}
+		else if (count == 3)
+		{
+			if (colors_line[*i] == ',')
+				return (0);
+			break ;
+		}
+	}
+	return (count == 3 && comma_count == 2);
+}
+
 void	check_line_args(t_prog *data, char *colors_line)
 {
-	int i;
-	int coma;
+	int	i;
+	int	checker;
 
-	coma = 0;
+	checker = 0;
 	i = 0;
 	while (colors_line[i])
 	{
-		if (colors_line[i] == ' ' || colors_line[i] == 'C' || colors_line[i] == 'F')
+		while (colors_line[i] == ' ')
 			i++;
-		if (colors_line[i] == ',')
-			coma = coma + 1;
-		if (coma > 2)
-			ft_errors(data, "Wrong arguments in colors", -42);
-		i++;
+		if (colors_line[i] == 'C' || colors_line[i] == 'F')
+		{
+			if (colors_line[i + 1] != ' ')
+				ft_errors(data, "Identifier can only be C or F", -42);
+			checker = checker + 1;
+			if (checker > 1)
+				ft_errors(data, "Too many identifiers in color line", -42);
+			i++;
+		}
+		if (!valid_Rgb(colors_line, &i))
+			ft_errors(data, "Invalid RGB format", -42);
+		while (colors_line[i] == ' ')
+			i++;
+		if (colors_line[i] != '\0')
+			ft_errors(data, "Invalid characters after RGB values", -42);
 	}
 }
 
@@ -60,12 +112,6 @@ void	parse_colors(t_prog *data, char *colors_line)
 	mid_color = 0;
 	right_color = 0;
 	check_line_args(data, colors_line);
-	if (colors_line[0] == 'F' || colors_line[0] == 'C')
-	{
-		if (colors_line[1] != ' ')
-			ft_errors(data, "Wrong color identifier", 1);
-		colors_line += 2;
-	}
 	colors = ft_split(colors_line, ',');
 	if (!colors)
 		ft_errors(data, "Failed to split the colors", 1);
