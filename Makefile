@@ -7,6 +7,7 @@ SRCS 			=	src/main.c \
 					./init/init_map.c \
 					./init/init_texture.c \
 					./init/init_window.c \
+					./init/init_player.c \
 					./parsing/parse_map.c \
 					./parsing/parse_map_utils.c \
 					./parsing/parsing_utils.c \

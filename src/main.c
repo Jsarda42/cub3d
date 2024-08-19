@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:11:34 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/14 13:29:19 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/19 13:01:17 by ftanon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	init_data(&data, argv);
 	init_map(&data);
 	parse_map(&data);
+	init_the_player(&data);
 	init_textures(&data);
 	init_window(&data);
 	mlx_hook(data.win_ptr, DestroyNotify, ButtonPressMask, &close_game, &data);

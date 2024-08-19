@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_grid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:48:47 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/14 11:54:15 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/19 13:05:29 by ftanon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,15 @@ int	check_mid_line(t_prog *data, char **map, int row)
 
 	player_number = 0;
 	col = -1;
+
 	while (map[row][++col])
 	{
 		if (is_player_position(map[row][col]))
+		{
 			player_number += 1;
+			data->player.player_x = col;
+			data->player.player_y = row;
+		}
 		mid_valid_char(data, map[row][col]);
 		if (map[row][col] == '0' || is_player_position(map[row][col]))
 		{
@@ -99,12 +104,13 @@ void	parse_map_grid(t_prog *data, int i)
 	player_number = 0;
 	last = 0;
 	mid = 0;
+	printf("i = %d\n", i);
 	check_first_line(data, data->map_data.map_str[i]);
 	last = i;
 	while (data->map_data.map_str[last])
 		last++;
 	last = check_last_line(data, data->map_data.map_str, last, i);
-	mid = last - 1;
+	mid = last;
 	while (mid > i)
 	{
 		player_number += check_mid_line(data, data->map_data.map_str, mid);
