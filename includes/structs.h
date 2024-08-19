@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:23:35 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 12:59:09 by ftanon           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:26:38 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_map
 	char *filename;
 	int map_size;
 	char **map_str;
+	char **game_map;
 } t_map;
 
 typedef struct s_line

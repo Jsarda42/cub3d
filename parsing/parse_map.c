@@ -3,28 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 11:00:15 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 13:19:27 by ftanon           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:49:48 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-
-
 void	parse_map(t_prog *data)
 {
 	char	**map;
 	int		i;
+	int		j;
+	int		game_map_len;
 
+
+	game_map_len = 0;
 	i = 0;
+	j = 0;
 	map = data->map_data.map_str;
 	i = parse_identifier(data, map);
-	// // store game_map
-	// char **game_map;
-	// game_map = malloc(sizeof(char *) * ft_strlen(map + i));
-	printf("%d\n", ft_strlen(map + i));
-	parse_map_grid(data, i);
+	game_map_len = data->map_data.map_size - i;
+	data->map_data.game_map = malloc(sizeof(char *) * game_map_len);
+	while (j < game_map_len)
+	{
+		data->map_data.game_map[j] = ft_strdup(map[i + j]);
+		j++;
+	}
+	parse_map_grid(data);
 }

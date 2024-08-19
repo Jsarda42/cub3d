@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:23:54 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 12:34:46 by ftanon           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:28:50 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void init_the_player(t_prog *data);
 // parse
 void parse_map(t_prog *data);
 int parse_identifier(t_prog *data, char **map);
-void parse_map_grid(t_prog *data, int i);
+void parse_map_grid(t_prog *data);
 void parse_cardinals(t_prog *data, char *cardinal_line);
 void parse_colors(t_prog *data, char *colors_line);
 
