@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 11:00:15 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 14:49:48 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/19 15:57:03 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	parse_map(t_prog *data)
 	while (j < game_map_len)
 	{
 		data->map_data.game_map[j] = ft_strdup(map[i + j]);
+		// printf("map str = %s\n", map[i + j]);
+		// printf("map game map = %s\n", data->map_data.game_map[j]);
+
 		j++;
 	}
 	parse_map_grid(data);

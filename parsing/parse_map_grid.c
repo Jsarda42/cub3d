@@ -6,7 +6,7 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:48:47 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 15:23:53 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/19 16:08:28 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	check_mid_line(t_prog *data, char **map, int row)
 
 	player_number = 0;
 	col = -1;
-	printf("%s\n", map[row]);
+	if (data->map_data.game_map[row][0] == '\0')
+			ft_errors(data, "Wrong map format in mid 1", -42);
 	while (map[row][++col])
 	{
 		if (is_player_position(map[row][col]))
