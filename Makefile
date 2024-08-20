@@ -2,7 +2,7 @@ SRCS = main.o \
 
 MINILIBX = ~/Desktop/milestone2/so_long/solong/minilibx-linux/libmlx_Linux.a -lXext -lX11
 
-NAME = so_long
+NAME = cub3d
 
 all: $(NAME)
 
