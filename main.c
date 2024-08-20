@@ -6,7 +6,7 @@
 /*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:58:17 by ftanon            #+#    #+#             */
-/*   Updated: 2024/08/20 12:37:02 by ftanon           ###   ########.fr       */
+/*   Updated: 2024/08/20 14:43:39 by ftanon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 
-#define SW 640
-#define SH 480
-#define MAPW 24
-#define MAPH 24
+#define SW 		640
+#define SH 		480
+#define MAPW 	24
+#define MAPH 	24
+#define KEY_W	119
+#define KEY_S	115
+#define KEY_D	100
+#define KEY_A	97
 
 typedef struct s_mlx
 {
@@ -198,7 +202,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx_p, mlx->win_ptr);
 		exit(0);
 	}
-	if (keycode == 119)
+	if (keycode == KEY_W)
 	{
 		if (!worldMap[(int)(mlx->posX + mlx->dirX * mlx->moveSpeed)][(int)mlx->posY])
 			mlx->posX += mlx->dirX * mlx->moveSpeed;
@@ -207,7 +211,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 		mlx_clear_window(mlx->mlx_p, mlx->win_ptr);
 		raycasting(mlx);
 	}
-	if (keycode == 115)
+	if (keycode == KEY_S)
 	{
 		if (!worldMap[(int)(mlx->posX - mlx->dirX * mlx->moveSpeed)][(int)mlx->posY])
 			mlx->posX -= mlx->dirX * mlx->moveSpeed;
@@ -216,7 +220,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 		mlx_clear_window(mlx->mlx_p, mlx->win_ptr);
 		raycasting(mlx);
 	}
-	if (keycode == 97)
+	if (keycode == KEY_A)
 	{
 		mlx->oldDirX = mlx->dirX;
 		mlx->dirX = mlx->dirX * cos(mlx->rotSpeed) - mlx->dirY * sin(mlx->rotSpeed);
@@ -227,7 +231,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 		mlx_clear_window(mlx->mlx_p, mlx->win_ptr);
 		raycasting(mlx);
 	}
-	if (keycode == 100)
+	if (keycode == KEY_D)
 	{
 		mlx->oldDirX = mlx->dirX;
 		mlx->dirX = mlx->dirX * cos(-mlx->rotSpeed) - mlx->dirY * sin(-mlx->rotSpeed);
@@ -251,15 +255,16 @@ void	init_values(t_mlx *mlx)
 	mlx->planeY = 0.66;
 	mlx->time = 0;
 	mlx->oldTime = 0;
-	mlx->moveSpeed = 0.1;
-	mlx->rotSpeed = 0.1;
+	mlx->moveSpeed = 1;
+	mlx->rotSpeed = 0.5;
 }
 
 void	start_game(t_mlx *mlx)
 {
 	mlx->mlx_p = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_p, SW, SH, "cub3d");
-	mlx_key_hook(mlx->win_ptr, key_hook, mlx);
+	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &key_hook, mlx);
+	// mlx_key_hook(mlx->win_ptr, key_hook, mlx);
 	raycasting(mlx);
 	mlx_loop(mlx->mlx_p);
 }
