@@ -6,7 +6,7 @@
 /*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:58:17 by ftanon            #+#    #+#             */
-/*   Updated: 2024/08/20 14:47:46 by ftanon           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:10:54 by ftanon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,40 @@ int	key_hook(int keycode, t_mlx *mlx)
 	return (0);
 }
 
+int	key_release(int keycode, t_mlx *mlx)
+{
+	if (keycode == 65307)
+	{
+		mlx_destroy_window(mlx->mlx_p, mlx->win_ptr);
+		exit(0);
+	}
+	if (keycode == KEY_W)
+	{
+		mlx->posX = mlx->posX;
+		mlx->posY = mlx->posY;
+	}
+	if (keycode == KEY_S)
+	{
+		mlx->posX = mlx->posX;
+		mlx->posY = mlx->posY;
+	}
+	if (keycode == KEY_A)
+	{
+		mlx->dirX = mlx->dirX;
+		mlx->dirY = mlx->dirY;
+		mlx->planeX = mlx->planeX;
+		mlx->planeY = mlx->planeY;
+	}
+	if (keycode == KEY_D)
+	{
+		mlx->dirX = mlx->dirX;
+		mlx->dirY = mlx->dirY;
+		mlx->planeX = mlx->planeX;
+		mlx->planeY = mlx->planeY;
+	}
+	return (0);
+}
+
 void	init_values(t_mlx *mlx)
 {
 	mlx->posX = 22;
@@ -264,7 +298,7 @@ void	start_game(t_mlx *mlx)
 	mlx->mlx_p = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_p, SW, SH, "cub3d");
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &key_hook, mlx);
-	// mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &key_hook, mlx);
+	// mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &key_release, mlx);
 	// mlx_key_hook(mlx->win_ptr, key_hook, mlx);
 	raycasting(mlx);
 	mlx_loop(mlx->mlx_p);
