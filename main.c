@@ -6,7 +6,7 @@
 /*   By: ftanon <ftanon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:58:17 by ftanon            #+#    #+#             */
-/*   Updated: 2024/08/20 14:43:39 by ftanon           ###   ########.fr       */
+/*   Updated: 2024/08/20 14:47:46 by ftanon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,8 @@ void	start_game(t_mlx *mlx)
 {
 	mlx->mlx_p = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_p, SW, SH, "cub3d");
-	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &key_hook, mlx);
+	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &key_hook, mlx);
+	// mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &key_hook, mlx);
 	// mlx_key_hook(mlx->win_ptr, key_hook, mlx);
 	raycasting(mlx);
 	mlx_loop(mlx->mlx_p);
