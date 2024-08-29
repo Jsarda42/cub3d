@@ -3,41 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: edegraev <edegraev@student.forty2.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:26:50 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 14:30:09 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/27 15:07:04 by edegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
-void	free_xpm_ptr(t_image *image, t_prog *data)
+void	del_data(t_sys *sys)
 {
-	if (image->xpm_ptr)
-		mlx_destroy_image(data->mlx_ptr, image->xpm_ptr);
+	if (!sys)
+		return ;
+	if (sys->map_sys.map_str)
+		free_split(sys->map_sys.map_str);
+	if (sys->map_sys.game_map)
+		free_split(sys->map_sys.game_map);
 }
 
-void	free_all(t_prog *data)
+void	free_xpm_ptr(t_image *image, t_sys *sys)
 {
-	del_data(data);
-	free_xpm_ptr(&(data->no_wall), data);
-	free_xpm_ptr(&(data->we_wall), data);
-	free_xpm_ptr(&(data->so_wall), data);
-	free_xpm_ptr(&(data->ea_wall), data);
-	if (data->no_wall.filename)
-		free(data->no_wall.filename);
-	if (data->so_wall.filename)
-		free(data->so_wall.filename);
-	if (data->we_wall.filename)
-		free(data->we_wall.filename);
-	if (data->ea_wall.filename)
-		free(data->ea_wall.filename);
-	if (data->win_ptr)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	if (data->mlx_ptr)
+	if (image->xpm_ptr)
+		mlx_destroy_image(sys->mlx_ptr, image->xpm_ptr);
+}
+
+void	free_all(t_sys *sys)
+{
+	if (!sys)
+		return ;
+	del_data(sys);
+	free_xpm_ptr(&(sys->no_wall), sys);
+	free_xpm_ptr(&(sys->we_wall), sys);
+	free_xpm_ptr(&(sys->so_wall), sys);
+	free_xpm_ptr(&(sys->ea_wall), sys);
+	if (sys->img)
+		mlx_destroy_image(sys->mlx_ptr, sys->img);
+	if (sys->no_wall.img_filename)
+		free(sys->no_wall.img_filename);
+	if (sys->so_wall.img_filename)
+		free(sys->so_wall.img_filename);
+	if (sys->we_wall.img_filename)
+		free(sys->we_wall.img_filename);
+	if (sys->ea_wall.img_filename)
+		free(sys->ea_wall.img_filename);
+	if (sys->win_ptr)
+		mlx_destroy_window(sys->mlx_ptr, sys->win_ptr);
+	if (sys->mlx_ptr)
 	{
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
+		mlx_destroy_display(sys->mlx_ptr);
+		free(sys->mlx_ptr);
 	}
 }

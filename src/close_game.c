@@ -6,24 +6,14 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:20:13 by jsarda            #+#    #+#             */
-/*   Updated: 2024/08/19 14:30:27 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/21 12:38:35 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cub3d.h"
 
-int	close_game(t_prog *data)
+int	close_game(t_sys *sys)
 {
-	free_all(data);
+	free_all(sys);
 	exit(0);
-}
-
-void	del_data(t_prog *data)
-{
-	if (!data)
-		return ;
-	if (data->map_data.map_str)
-		free_split(data->map_data.map_str);
-	if (data->map_data.game_map)
-		free_split(data->map_data.game_map);
 }

@@ -6,33 +6,35 @@
 /*   By: jsarda <jsarda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:10:25 by juliensarda       #+#    #+#             */
-/*   Updated: 2024/08/12 14:29:05 by jsarda           ###   ########.fr       */
+/*   Updated: 2024/08/27 14:31:47 by jsarda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "cub3d.h"
 
-static void	file_to_img(t_image *image, t_prog *data, char *filename)
+static void	file_to_img(t_image *image, t_sys *sys, char *filename)
 {
-	image->xpm_ptr = mlx_xpm_file_to_image(data->mlx_ptr, filename, &(image->w),
+	image->xpm_ptr = mlx_xpm_file_to_image(sys->mlx_ptr, filename, &(image->w),
 			&(image->h));
 	if (!image->xpm_ptr)
-		ft_errors(data, "Error uploading xpm to image", -42);
+		ft_errors(sys, "Error uploading xpm to image", 1);
+	image->img_data = mlx_get_data_addr(image->xpm_ptr, &image->bpp,
+			&image->size_line, &image->endian);
 }
 
-static void	init_walls(t_prog *data)
+static void	init_walls(t_sys *sys)
 {
-	if (!data->no_wall.xpm_ptr)
-		file_to_img(&(data->no_wall), data, data->no_wall.filename);
-	if (!data->so_wall.xpm_ptr)
-		file_to_img(&(data->so_wall), data, data->so_wall.filename);
-	if (!data->we_wall.xpm_ptr)
-		file_to_img(&(data->we_wall), data, data->we_wall.filename);
-	if (!data->ea_wall.xpm_ptr)
-		file_to_img(&(data->ea_wall), data, data->ea_wall.filename);
+	if (!sys->no_wall.xpm_ptr)
+		file_to_img(&(sys->no_wall), sys, sys->no_wall.img_filename);
+	if (!sys->so_wall.xpm_ptr)
+		file_to_img(&(sys->so_wall), sys, sys->so_wall.img_filename);
+	if (!sys->we_wall.xpm_ptr)
+		file_to_img(&(sys->we_wall), sys, sys->we_wall.img_filename);
+	if (!sys->ea_wall.xpm_ptr)
+		file_to_img(&(sys->ea_wall), sys, sys->ea_wall.img_filename);
 }
 
-void	init_textures(t_prog *data)
+void	init_textures(t_sys *sys)
 {
-	init_walls(data);
+	init_walls(sys);
 }
